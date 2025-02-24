@@ -3,7 +3,7 @@
 Grade lots of directories at once
 
 ```
-massgrade ./dirA ./dirB
+$ massgrade ./dirA ./dirB
 Checking ./dirA...
 Initial commit was made at 2025-02-24 15:44:50 (4 minutes ago)
 =============
