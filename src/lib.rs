@@ -31,6 +31,12 @@ pub fn check_directories(raw_dirs: &[String]) -> Vec<PathBuf> {
     directories
 }
 
+/// Copies all files in the given directory to the target directory
+///
+/// Shamelessly taken from here: https://stackoverflow.com/a/65192210
+///
+/// * `src` - source directory to copy from
+/// * `dst` - target directory to copy to
 fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> {
     fs::create_dir_all(&dst)?;
     for entry in fs::read_dir(src)? {
