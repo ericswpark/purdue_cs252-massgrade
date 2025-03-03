@@ -6,6 +6,6 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.96"
 clap = "4.5.31"
-cs252chkr = { git = "ssh://git@github.com/ericswpark/purdue_cs252chkr" }
+cs252chkr = { git = "ssh://git@github.com/ericswpark/purdue_cs252chkr.git" }
 tempfile = "3.17.1"
 thiserror = "2.0.11"
