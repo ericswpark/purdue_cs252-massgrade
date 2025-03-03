@@ -1,7 +1,7 @@
 use cs252chkr::check as cs252chkr;
+use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::{fs, io};
-use std::io::Write;
 use tempfile::tempdir;
 use thiserror::Error;
 
