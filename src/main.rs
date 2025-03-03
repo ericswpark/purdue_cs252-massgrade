@@ -1,5 +1,5 @@
-use clap::Parser;
 use anyhow::{bail, Context, Result};
+use clap::Parser;
 use massgrade::{check, check_directories};
 
 #[derive(Parser, Debug)]
@@ -9,7 +9,7 @@ struct Cli {
     /// Show git partial logs (`git log -p`). Warning: generates a lot of output
     #[arg(short = 'p', long)]
     git_log_partial: bool,
-    directories: Vec<String>
+    directories: Vec<String>,
 }
 
 fn main() -> Result<()> {

@@ -1,8 +1,8 @@
-use std::{fs, io};
+use cs252chkr::check as cs252chkr;
 use std::path::{Path, PathBuf};
+use std::{fs, io};
 use tempfile::tempdir;
 use thiserror::Error;
-use cs252chkr::check as cs252chkr;
 
 #[derive(Error, Debug)]
 pub enum Error {
@@ -10,7 +10,6 @@ pub enum Error {
     IoError(#[from] std::io::Error),
     #[error(transparent)]
     CHKRError(#[from] cs252chkr::Error),
-
 }
 
 /// Checks each directory to make sure they exist and returns an array of directory PathBufs
@@ -50,7 +49,6 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> 
     }
     Ok(())
 }
-
 
 /// Main check function of massgrade
 ///
