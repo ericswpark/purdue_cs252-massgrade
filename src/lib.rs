@@ -1,6 +1,7 @@
 use cs252chkr::check as cs252chkr;
 use std::path::{Path, PathBuf};
 use std::{fs, io};
+use std::io::Write;
 use tempfile::tempdir;
 use thiserror::Error;
 
@@ -56,11 +57,15 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> 
 /// * `partial_logs` - whether to enable git partial logs on CS252chkr
 pub fn check(dirs: &[PathBuf], partial_logs: bool) -> Result<(), Error> {
     for dir in dirs {
+        println!("Checking directory {}", dir.display());
+
         let temp_dir = tempdir()?;
+        print!("Copying to temporary directory for grading... ");
+        io::stdout().flush()?;
         copy_dir_all(dir, &temp_dir)?;
+        println!("Done");
 
         // Run cs252chkr against copied directory
-        println!("Checking {}...", dir.display());
         cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs)?;
     }
 
