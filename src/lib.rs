@@ -55,14 +55,15 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> 
 /// Main check function of massgrade
 ///
 /// * `dirs` - directories to check
-pub fn check(dirs: &[PathBuf]) -> Result<(), Error> {
+/// * `partial_logs` - whether to enable git partial logs on CS252chkr
+pub fn check(dirs: &[PathBuf], partial_logs: bool) -> Result<(), Error> {
     for dir in dirs {
         let temp_dir = tempdir()?;
         copy_dir_all(dir, &temp_dir)?;
 
         // Run cs252chkr against copied directory
         println!("Checking {}...", dir.display());
-        cs252chkr(temp_dir.path().to_str().unwrap())?;
+        cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs)?;
     }
 
     Ok(())
