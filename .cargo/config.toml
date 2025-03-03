@@ -1,0 +1,5 @@
+
+[net]
+# Use the system `git` for fetching dependencies
+# Required as `cargo`'s built in git library does not use default SSH credentials
+git-fetch-with-cli = true
