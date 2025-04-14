@@ -1,4 +1,5 @@
 use cs252chkr::check as cs252chkr;
+use cs252chkr::constants::LOC_PATHSPEC;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::{fs, io};
@@ -66,7 +67,7 @@ pub fn check(dirs: &[PathBuf], partial_logs: bool) -> Result<(), Error> {
         println!("Done");
 
         // Run cs252chkr against copied directory
-        cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs)?;
+        cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs, LOC_PATHSPEC)?;
     }
 
     Ok(())
