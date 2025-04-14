@@ -1,5 +1,4 @@
 use cs252chkr::check as cs252chkr;
-use cs252chkr::constants::LOC_PATHSPEC;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::{fs, io};
@@ -56,7 +55,7 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> 
 ///
 /// * `dirs` - directories to check
 /// * `partial_logs` - whether to enable git partial logs on CS252chkr
-pub fn check(dirs: &[PathBuf], partial_logs: bool) -> Result<(), Error> {
+pub fn check(dirs: &[PathBuf], partial_logs: bool, pathspec: &str) -> Result<(), Error> {
     for dir in dirs {
         println!("Checking directory {}", dir.display());
 
@@ -67,7 +66,7 @@ pub fn check(dirs: &[PathBuf], partial_logs: bool) -> Result<(), Error> {
         println!("Done");
 
         // Run cs252chkr against copied directory
-        cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs, LOC_PATHSPEC)?;
+        cs252chkr(temp_dir.path().to_str().unwrap(), partial_logs, pathspec)?;
     }
 
     Ok(())
